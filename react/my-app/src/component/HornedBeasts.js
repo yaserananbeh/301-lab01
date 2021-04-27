@@ -1,21 +1,36 @@
-import React from 'react';
-// import one from '../images/one.jpg';
-// import two from '../images/two.jpg';
-
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from 'react-bootstrap/Card'
 class HornedBeasts extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            numOfClicks: 0
+        }
+    }
+    clicksHandler = () => {
+        this.setState({
+            numOfClicks: this.state.numOfClicks + 1
+        })
+    }
     render() {
-        // console.log(this.props);
         return (
-            <section class='section'>
-                
-                <h2 class="title">{this.props.imageTitle}</h2>
-                
-                <img src={this.props.src} alt='' title='' width='200px'/>
-                <p class='discription'>{this.props.imageDescription}</p>
-            </section>
-            
-        )
-    };
-}
+            <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={this.props.url}  onClick={this.clicksHandler}/>
+            <Card.Body>
+                <Card.Title>{this.props.name}</Card.Title>
+                <Card.Text>
+                {this.props.description}
+                </Card.Text>
+                <Card.Text>
+                    <p>
 
+                ❤️ {this.state.numOfClicks}
+                    </p>
+                </Card.Text>
+            </Card.Body>
+            </Card>
+        )
+    }
+}
 export default HornedBeasts;
